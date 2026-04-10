@@ -1321,7 +1321,6 @@ function initGitalk(id, title) {
             title: title,
             language: 'zh-CN',
             distractionFreeMode: false,
-            pagerDirection: 'last',
             createIssueManually: true
         });
         
@@ -1344,7 +1343,7 @@ function initGuestbookGitalk() {
             title: '留言板',
             language: 'zh-CN',
             distractionFreeMode: false,
-            createIssueManually: true  // 修复：移除 proxy，添加自动创建 Issue
+            createIssueManually: true
         });
         
         gitalk.render('guestbook-gitalk');
