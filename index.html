@@ -1044,20 +1044,10 @@
                 </h2>
             </div>
             
-            <div class="guestbook-form">
-                <div class="form-group">
-                    <label class="form-label">昵称</label>
-                    <input type="text" class="form-input" id="guest-name" placeholder="请输入你的昵称">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">留言内容</label>
-                    <textarea class="form-textarea" id="guest-content" placeholder="写下你想说的话..."></textarea>
-                </div>
-                <button class="btn-primary" onclick="submitGuestbook()">
-                    <span>📤</span> 提交留言
-                </button>
-            </div>
-
+            <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; text-align: center; color: var(--text-light);">
+    <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">💬 欢迎留下你的足迹</p>
+    <p style="font-size: 0.9rem;">点击下方的 "Sign in with GitHub" 登录后即可评论</p>
+</div>
             <div id="guestbook-utterances" class="gitalk-container"></div>
         </section>
 
@@ -1306,19 +1296,6 @@
         // 留言板使用固定的 guestbook issue
         function initGuestbookComments() {
             loadUtterances('guestbook-utterances', 'guestbook');
-        }
-
-        function submitGuestbook() {
-            const name = document.getElementById('guest-name').value;
-            const content = document.getElementById('guest-content').value;
-            
-            if (!content.trim()) {
-                alert('请输入留言内容');
-                return;
-            }
-            
-            alert('留言已提交！（Utterances 需登录 GitHub 后评论）');
-            document.getElementById('guest-content').value = '';
         }
 
         function updateCategoryCounts() {
