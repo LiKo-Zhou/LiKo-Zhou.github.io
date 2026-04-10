@@ -957,11 +957,6 @@
                     <span class="typing-text" id="typing"></span><span class="cursor"></span>
                 </div>
 
-                <div class="uptime-card">
-                    <div class="uptime-label">Site Uptime</div>
-                    <div class="uptime-time" id="uptime-detail">0天 0小时 0分 0秒</div>
-                </div>
-
                 <p style="margin-top: 2rem; color: var(--text-light); font-size: 1.1rem;">
                     井底之蛙，不知大海之宽广，却知晓天空之蓝
                 </p>
@@ -1322,14 +1317,13 @@
                     repo: 'LiKo-Zhou.github.io',
                     owner: 'LiKo-Zhou',
                     admin: ['LiKo-Zhou'],
-                    id: 'article-' + id,
+                    id: 'article-' + id,  // 确保每篇文章ID唯一且小于50字符
                     title: title,
                     language: 'zh-CN',
                     distractionFreeMode: false,
                     pagerDirection: 'last',
-                    // 修复：显式设置回调URL为当前域名
-                    proxy: 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token'
-                });
+                    createIssueManually: true  // 添加这行：首次访问自动创建 Issue，避免权限问题
+               });
                 
                 gitalk.render('gitalk-container');
             }, 100);
@@ -1351,6 +1345,7 @@
                     language: 'zh-CN',
                     distractionFreeMode: false,
                     proxy: 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token'
+                    createIssueManually: true
                 });
                 
                 gitalk.render('guestbook-gitalk');
@@ -1429,18 +1424,19 @@
         }
         
         function updateUptime() {
-            const now = new Date().getTime();
-            const diff = now - startTime;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            const str = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
-            
-            document.getElementById('uptime-detail').textContent = str;
-            document.getElementById('uptime-footer').textContent = str;
-        }
+        const now = new Date().getTime();
+        const diff = now - startTime;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+        const str = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+    
+        // 只保留 footer 计时器
+        const footerTimer = document.getElementById('uptime-footer');
+        if (footerTimer) footerTimer.textContent = str;
+        }    
         
         setInterval(updateUptime, 1000);
         updateUptime();
