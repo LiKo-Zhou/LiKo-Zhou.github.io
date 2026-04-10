@@ -1306,51 +1306,50 @@
 
         // ==================== Gitalk 评论 ====================
         // 修复回调URL问题 - 使用当前页面URL作为回调
-        function initGitalk(id, title) {
-            const container = document.getElementById('gitalk-container');
-            container.innerHTML = '';
-            
-            setTimeout(() => {
-                const gitalk = new Gitalk({
-                    clientID: '0v23liTuvG3H5jJNCt5V',
-                    clientSecret: 'bd4daba10df72e3b859f6d1d33d2ab52adbfd60f',
-                    repo: 'LiKo-Zhou.github.io',
-                    owner: 'LiKo-Zhou',
-                    admin: ['LiKo-Zhou'],
-                    id: 'article-' + id,  // 确保每篇文章ID唯一且小于50字符
-                    title: title,
-                    language: 'zh-CN',
-                    distractionFreeMode: false,
-                    pagerDirection: 'last',
-                    createIssueManually: true  // 添加这行：首次访问自动创建 Issue，避免权限问题
-               });
-                
-                gitalk.render('gitalk-container');
-            }, 100);
-        }
+function initGitalk(id, title) {
+    const container = document.getElementById('gitalk-container');
+    container.innerHTML = '';
+    
+    setTimeout(() => {
+        const gitalk = new Gitalk({
+            clientID: '0v23liTuvG3H5jJNCt5V',
+            clientSecret: 'bd4daba10df72e3b859f6d1d33d2ab52adbfd60f',
+            repo: 'LiKo-Zhou.github.io',
+            owner: 'LiKo-Zhou',
+            admin: ['LiKo-Zhou'],
+            id: 'article-' + id,
+            title: title,
+            language: 'zh-CN',
+            distractionFreeMode: false,
+            pagerDirection: 'last',
+            createIssueManually: true
+        });
+        
+        gitalk.render('gitalk-container');
+    }, 100);
+}
 
-        function initGuestbookGitalk() {
-            const container = document.getElementById('guestbook-gitalk');
-            if (container.children.length > 0) return;
-            
-            setTimeout(() => {
-                const gitalk = new Gitalk({
-                    clientID: '0v23liTuvG3H5jJNCt5V',
-                    clientSecret: 'bd4daba10df72e3b859f6d1d33d2ab52adbfd60f',
-                    repo: 'LiKo-Zhou.github.io',
-                    owner: 'LiKo-Zhou',
-                    admin: ['LiKo-Zhou'],
-                    id: 'guestbook',
-                    title: '留言板',
-                    language: 'zh-CN',
-                    distractionFreeMode: false,
-                    proxy: 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token'
-                    createIssueManually: true
-                });
-                
-                gitalk.render('guestbook-gitalk');
-            }, 100);
-        }
+function initGuestbookGitalk() {
+    const container = document.getElementById('guestbook-gitalk');
+    if (container.children.length > 0) return;
+    
+    setTimeout(() => {
+        const gitalk = new Gitalk({
+            clientID: '0v23liTuvG3H5jJNCt5V',
+            clientSecret: 'bd4daba10df72e3b859f6d1d33d2ab52adbfd60f',
+            repo: 'LiKo-Zhou.github.io',
+            owner: 'LiKo-Zhou',
+            admin: ['LiKo-Zhou'],
+            id: 'guestbook',
+            title: '留言板',
+            language: 'zh-CN',
+            distractionFreeMode: false,
+            createIssueManually: true  // 修复：移除 proxy，添加自动创建 Issue
+        });
+        
+        gitalk.render('guestbook-gitalk');
+    }, 100);
+}
 
         function submitGuestbook() {
             const name = document.getElementById('guest-name').value;
