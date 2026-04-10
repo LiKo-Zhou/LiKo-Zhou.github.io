@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - LiKo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 
+                        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid #fff;
+        }
+
+        .avatar:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d3436;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .quote {
+            font-size: 15px;
+            color: #636e72;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-style: italic;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .quote::before,
+        .quote::after {
+            content: '"';
+            font-size: 24px;
+            color: #dfe6e9;
+            position: absolute;
+            font-family: Georgia, serif;
+        }
+
+        .quote::before {
+            top: -10px;
+            left: -5px;
+        }
+
+        .quote::after {
+            bottom: -15px;
+            right: -5px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffecd2, #fcb69f);
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+
+        .anchor-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(245, 246, 250, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(223, 230, 233, 0.5);
+        }
+
+        .anchor-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .anchor-title::before {
+            content: '⚓';
+            font-size: 18px;
+        }
+
+        .anchor-content {
+            font-size: 14px;
+            color: #b2bec3;
+            line-height: 1.6;
+        }
+
+        .links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .link-item {
+            color: #636e72;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(223, 230, 233, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover {
+            background: #2d3436;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 25px;
+            }
+            
+            .avatar-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="avatar-container floating">
+            <!-- 替换为你的头像图片地址 -->
+            <img src=""C:\Users\LiKo\Pictures\A\-1523077553.jpg"">
+        </div>
+        
+        <h1>LiKo</h1>
+        
+        <p class="quote">
+            井底之蛙，不知大海之宽广，却知晓天空之蓝
+        </p>
+        
+        <div class="divider"></div>
+        
+        <div class="anchor-section">
+            <div class="anchor-title">Anchor</div>
+            <div class="anchor-content">
+                这个人很懒，没有什么可介绍和可写的…………
+            </div>
+        </div>
+        
+        <div class="links">
+            <a href="#" class="link-item">首页</a>
+            <a href="#" class="link-item">博客</a>
+            <a href="#" class="link-item">GitHub</a>
+            <a href="#" class="link-item">联系</a>
+        </div>
+    </div>
+
+    <script>
+        // 鼠标跟随视差效果
+        document.addEventListener('mousemove', (e) => {
+            const container = document.querySelector('.container');
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            
+            container.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+
+        // 点击头像随机切换头像（使用 DiceBear API）
+        let seeds = ['anime', 'bottts', 'pixel-art', 'lorelei', 'notionists'];
+        let currentIndex = 0;
+        
+        document.getElementById('avatar').addEventListener('click', function() {
+            currentIndex = (currentIndex + 1) % seeds.length;
+            this.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${seeds[currentIndex]}&backgroundColor=ffecd2,fcb69f,ffd1dc`;
+        });
+    </script>
+</body>
+</html>
