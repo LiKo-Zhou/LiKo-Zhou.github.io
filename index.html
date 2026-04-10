@@ -1365,22 +1365,27 @@
             startTime = parseInt(startTime);
         }
         
-        function updateUptime() {
-            const now = new Date().getTime();
-            const diff = now - startTime;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            const str = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
-            
-            const footerTimer = document.getElementById('uptime-footer');
-            if (footerTimer) footerTimer.textContent = str;
-        }
-        
-        setInterval(updateUptime, 1000);
-        updateUptime();
+// ==================== 计时器（固定网站上线时间）====================
+// 修改为你实际的网站上线时间（格式：YYYY-MM-DDTHH:mm:ss）
+const SITE_LAUNCH_DATE = '2026-04-10T18:00:00'; 
+let startTime = new Date(SITE_LAUNCH_DATE).getTime();
+
+function updateUptime() {
+    const now = new Date().getTime();
+    const diff = now - startTime;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    const str = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+    
+    const footerTimer = document.getElementById('uptime-footer');
+    if (footerTimer) footerTimer.textContent = str;
+}
+
+setInterval(updateUptime, 1000);
+updateUptime();
 
         document.getElementById('year').textContent = new Date().getFullYear();
 
