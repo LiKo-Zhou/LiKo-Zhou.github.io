@@ -775,6 +775,18 @@
             font-weight: 700;
         }
 
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
         .back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -935,8 +947,6 @@
         <!-- 首页 -->
         <section class="page-section active" id="page-home">
             <div class="hero">
-                <!-- 已删除头像上方的统计栏 -->
-
                 <div class="avatar-wrapper">
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=LiKo&backgroundColor=1e293b" 
                          alt="Avatar" class="avatar" id="avatar">
@@ -949,7 +959,7 @@
 
                 <div class="uptime-card">
                     <div class="uptime-label">Site Uptime</div>
-                    <div class="uptime-time" id="uptime-detail">-</div>
+                    <div class="uptime-time" id="uptime-detail">0天 0小时 0分 0秒</div>
                 </div>
 
                 <p style="margin-top: 2rem; color: var(--text-light); font-size: 1.1rem;">
@@ -1028,7 +1038,13 @@
                     清除筛选 ✕
                 </span>
             </div>
-            <div class="article-list" id="articleList"></div>
+            <div class="article-list" id="articleList">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📝</div>
+                    <h3>暂无文章</h3>
+                    <p>点击"关于"页面了解如何添加文章</p>
+                </div>
+            </div>
             <div class="pagination" id="pagination"></div>
         </section>
 
@@ -1081,7 +1097,7 @@
             <div class="footer-stats">
                 <div>访问量 <span class="stat-value" id="busuanzi_value_site_pv">0</span></div>
                 <div>访客 <span class="stat-value" id="busuanzi_value_site_uv">0</span></div>
-                <div>运行 <span class="stat-value" id="uptime-footer">-</span></div>
+                <div>运行 <span class="stat-value" id="uptime-footer">0天 0小时 0分 0秒</span></div>
             </div>
             <p>&copy; <span id="year">2024</span> LiKo. All rights reserved.</p>
         </footer>
@@ -1090,256 +1106,18 @@
     <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
     <script>
-        // ==================== 文章数据 ====================
+        // ==================== 文章数据（已清空，请在此添加你的文章）====================
         const articlesData = [
-            {
-                id: 1,
-                title: "如何制作一个壁纸网页",
-                date: "2024-04-10",
-                category: "技术",
-                views: 234,
-                summary: "详细介绍如何使用 HTML、CSS 和 JavaScript 制作一个精美的壁纸展示网页，包含响应式设计和动画效果。",
-                content: `# 如何制作一个壁纸网页
-
-## 简介
-制作一个壁纸网页是一个很好的前端练手项目，可以让你练习 HTML、CSS 和 JavaScript 的综合运用。
-
-## 技术栈
-- **HTML5**: 语义化标签
-- **CSS3**: Flexbox/Grid 布局、动画
-- **JavaScript**: 交互逻辑、动态加载
-
-## 实现步骤
-
-### 1. 页面结构
-首先搭建基本的 HTML 结构，使用语义化标签：
-
-\`\`\`html
-<div class="wallpaper-grid">
-  <div class="wallpaper-card">
-    <img src="wallpaper.jpg" alt="壁纸">
-  </div>
-</div>
-\`\`\`
-
-### 2. 样式设计
-使用 CSS Grid 实现响应式网格布局：
-
-\`\`\`css
-.wallpaper-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-\`\`\`
-
-### 3. 交互效果
-添加悬停动画和点击事件，提升用户体验。
-
-## 总结
-通过这个项目，你可以学到现代网页开发的核心技能。`
-            },
-            {
-                id: 2,
-                title: "Hexo Fluid 主题配置指南",
-                date: "2024-04-08",
-                category: "技术",
-                views: 189,
-                summary: "Hexo 是一款快速、简洁且高效的博客框架，Fluid 是其一款 Material Design 风格的主题。",
-                content: `# Hexo Fluid 主题配置指南
-
-## 安装 Hexo
-
-\`\`\`bash
-npm install -g hexo-cli
-hexo init blog
-cd blog
-npm install
-\`\`\`
-
-## 安装 Fluid 主题
-
-\`\`\`bash
-npm install --save hexo-theme-fluid
-\`\`\`
-
-## 配置说明
-
-在 \`_config.fluid.yml\` 中修改：
-
-- **导航栏**: 自定义菜单项
-- **首页**: 设置副标题和背景图
-- **评论**: 集成 Gitalk
-
-## 部署到 GitHub Pages
-
-\`\`\`bash
-hexo deploy
-\`\`\`
-
-大功告成！`
-            },
-            {
-                id: 3,
-                title: "我的 2024 年度总结",
-                date: "2024-04-05",
-                category: "随笔",
-                views: 156,
-                summary: "回顾 2024 年的成长与收获，记录那些值得纪念的时刻。",
-                content: `# 我的 2024 年度总结
-
-时光飞逝，转眼间 2024 年已经过去了四分之一。
-
-## 技术成长
-
-- 学习了 Vue.js 3 组合式 API
-- 完成了个人博客的搭建
-- 参与了开源项目贡献
-
-## 生活感悟
-
-> 井底之蛙，不知大海之宽广，却知晓天空之蓝
-
-保持好奇心，保持学习的热情。
-
-## 展望未来
-
-继续努力，成为更好的自己。`
-            },
-            {
-                id: 4,
-                title: "设计心理学读书笔记",
-                date: "2024-04-01",
-                category: "设计",
-                views: 123,
-                summary: "《设计心理学》是设计领域的经典著作，本文记录阅读过程中的思考和感悟。",
-                content: `# 设计心理学读书笔记
-
-## 好设计的基本原则
-
-1. **可视性**: 用户能看到操作选项
-2. **反馈**: 操作后要有及时响应
-3. **限制因素**: 通过约束引导用户
-4. **映射**: 控制与被控对象关系明确
-5. **一致性**: 相似的操作有相似的结果
-
-## 启示
-
-好的设计是 invisible 的，用户应该专注于任务本身，而不是操作界面。`
-            },
-            {
-                id: 5,
-                title: "周末徒步日记",
-                date: "2024-03-28",
-                category: "生活",
-                views: 98,
-                summary: "记录一次周末的徒步旅行，沿途的风景和心情。",
-                content: `# 周末徒步日记
-
-周六早晨，阳光明媚，适合徒步。
-
-## 路线
-
-从山脚出发，途经竹林、溪流，最终到达山顶观景台。
-
-## 风景
-
-![山景](mountain.jpg)
-
-> 会当凌绝顶，一览众山小。
-
-## 感悟
-
-偶尔远离城市的喧嚣，亲近自然，是很好的放松方式。`
-            },
-            {
-                id: 6,
-                title: "JavaScript 异步编程详解",
-                date: "2024-03-25",
-                category: "技术",
-                views: 267,
-                summary: "深入理解 Promise、async/await 和事件循环机制。",
-                content: `# JavaScript 异步编程详解
-
-## 回调函数
-
-最早的异步处理方式，但容易导致"回调地狱"。
-
-## Promise
-
-\`\`\`javascript
-fetch('/api/data')
-  .then(res => res.json())
-  .then(data => console.log(data));
-\`\`\`
-
-## Async/Await
-
-\`\`\`javascript
-async function getData() {
-  const res = await fetch('/api/data');
-  const data = await res.json();
-  return data;
-}
-\`\`\`
-
-## 事件循环
-
-理解宏任务和微任务的区别至关重要。`
-            },
-            {
-                id: 7,
-                title: "极简主义生活实践",
-                date: "2024-03-20",
-                category: "生活",
-                views: 145,
-                summary: "少即是多，通过断舍离获得更自由的生活。",
-                content: `# 极简主义生活实践
-
-## 什么是极简主义
-
-不是苦行僧式的生活，而是**去除冗余，保留精华**。
-
-## 实践方法
-
-1. **物品整理**: 一年以上没用的物品考虑处理
-2. **数字清理**: 定期清理手机和电脑文件
-3. **社交简化**: 减少无效社交，专注深度关系
-
-## 收获
-
-- 更清晰的头脑
-- 更专注的精力
-- 更自由的时间`
-            },
-            {
-                id: 8,
-                title: "CSS 动画性能优化",
-                date: "2024-03-15",
-                category: "技术",
-                views: 198,
-                summary: "探讨 CSS 动画的性能瓶颈和优化策略。",
-                content: `# CSS 动画性能优化
-
-## 性能瓶颈
-
-重排（Reflow）和重绘（Repaint）是性能杀手。
-
-## 优化策略
-
-使用 \`transform\` 和 \`opacity\`，它们会触发 GPU 加速：
-
-\`\`\`css
-.optimized {
-  transform: translateX(100px);
-  opacity: 0.5;
-}
-\`\`\`
-
-## 工具
-
-使用 Chrome DevTools 的 Performance 面板分析动画性能。`
-            }
+            // 示例格式：
+            // {
+            //     id: 1,
+            //     title: "文章标题",
+            //     date: "2024-04-10",
+            //     category: "技术",
+            //     views: 0,
+            //     summary: "文章摘要",
+            //     content: `# 文章内容\n\n支持 Markdown 语法`
+            // }
         ];
 
         // ==================== 路由系统 ====================
@@ -1419,7 +1197,7 @@ async function getData() {
                 data = data.filter(a => a.title.toLowerCase().includes(search.toLowerCase()));
             }
             pagination.filteredData = data;
-            pagination.totalPages = Math.ceil(data.length / pagination.pageSize);
+            pagination.totalPages = Math.ceil(data.length / pagination.pageSize) || 1;
             
             const start = (page - 1) * pagination.pageSize;
             const end = start + pagination.pageSize;
@@ -1427,7 +1205,13 @@ async function getData() {
             
             const listContainer = document.getElementById('articleList');
             if (pageData.length === 0) {
-                listContainer.innerHTML = '<div style="text-align: center; color: var(--text-light); padding: 3rem;">暂无文章</div>';
+                listContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📝</div>
+                        <h3>暂无文章</h3>
+                        <p>请在代码中 articlesData 数组添加你的文章</p>
+                    </div>
+                `;
             } else {
                 listContainer.innerHTML = pageData.map(article => `
                     <div class="article-item" onclick="router.navigate('article-detail', {id: ${article.id}})">
@@ -1450,7 +1234,7 @@ async function getData() {
 
         function renderPagination() {
             const container = document.getElementById('pagination');
-            if (pagination.totalPages <= 1) {
+            if (pagination.totalPages <= 1 || pagination.filteredData.length === 0) {
                 container.innerHTML = '';
                 return;
             }
@@ -1526,6 +1310,7 @@ async function getData() {
         }
 
         // ==================== Gitalk 评论 ====================
+        // 修复回调URL问题 - 使用当前页面URL作为回调
         function initGitalk(id, title) {
             const container = document.getElementById('gitalk-container');
             container.innerHTML = '';
@@ -1541,7 +1326,9 @@ async function getData() {
                     title: title,
                     language: 'zh-CN',
                     distractionFreeMode: false,
-                    pagerDirection: 'last'
+                    pagerDirection: 'last',
+                    // 修复：显式设置回调URL为当前域名
+                    proxy: 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token'
                 });
                 
                 gitalk.render('gitalk-container');
@@ -1562,7 +1349,8 @@ async function getData() {
                     id: 'guestbook',
                     title: '留言板',
                     language: 'zh-CN',
-                    distractionFreeMode: false
+                    distractionFreeMode: false,
+                    proxy: 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token'
                 });
                 
                 gitalk.render('guestbook-gitalk');
@@ -1630,12 +1418,19 @@ async function getData() {
             setTimeout(() => renderArticleList(1, null, keyword), 100);
         });
 
-        // ==================== 初始化 ====================
-        const deployDate = new Date('2024-04-10T00:00:00').getTime();
+        // ==================== 计时器（从0开始，使用localStorage记录首次访问时间）====================
+        // 检查是否已有记录，没有则记录当前时间
+        let startTime = localStorage.getItem('site_start_time');
+        if (!startTime) {
+            startTime = new Date().getTime();
+            localStorage.setItem('site_start_time', startTime);
+        } else {
+            startTime = parseInt(startTime);
+        }
         
         function updateUptime() {
             const now = new Date().getTime();
-            const diff = now - deployDate;
+            const diff = now - startTime;
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -1722,14 +1517,13 @@ async function getData() {
         // 等待不蒜子加载
         window.addEventListener('load', function() {
             setTimeout(function() {
-                // 检查统计是否加载
                 const pv = document.getElementById('busuanzi_value_site_pv');
                 const uv = document.getElementById('busuanzi_value_site_uv');
                 
                 if (!pv || pv.textContent === '0') {
                     console.log('Busuanzi loading...');
                 }
-            }, 2000);
+            }, 3000);
         });
     </script>
 </body>
