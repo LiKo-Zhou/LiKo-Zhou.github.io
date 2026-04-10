@@ -1355,24 +1355,22 @@
             }
             setTimeout(() => renderArticleList(1, null, keyword), 100);
         });
-
-        // ==================== 计时器（从0开始，使用localStorage记录首次访问时间）====================
-        let startTime = localStorage.getItem('site_start_time');
-        if (!startTime) {
-            startTime = new Date().getTime();
-            localStorage.setItem('site_start_time', startTime);
-        } else {
-            startTime = parseInt(startTime);
-        }
         
 // ==================== 计时器（固定网站上线时间）====================
 // 修改为你实际的网站上线时间（格式：YYYY-MM-DDTHH:mm:ss）
 const SITE_LAUNCH_DATE = '2026-04-10T18:00:00'; 
-let startTime = new Date(SITE_LAUNCH_DATE).getTime();
+const startTime = new Date(SITE_LAUNCH_DATE).getTime();
 
 function updateUptime() {
     const now = new Date().getTime();
     const diff = now - startTime;
+    
+    // 防止负数（如果设置的时间在未来）
+    if (diff < 0) {
+        document.getElementById('uptime-footer').textContent = '即将上线';
+        return;
+    }
+    
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
